@@ -1,0 +1,5 @@
+Type,Brand,Model,Year,Price,Is Rented,ID,Category
+Car,Ford,Mustang,2018,35000.00,false,1,
+Motorcycle,Harley-Davidson,Sportster,2015,12000.00,true,2,Cruiser
+Car,BBB,X5,2004,9000.00,false,3,
+Motorcycle,Kawasaki,Ninja,2008,8000.00,true,5,Sport
