@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.users.Client;
+
 import java.io.*;
 import java.nio.Buffer;
 import java.util.ArrayList;
@@ -74,5 +76,22 @@ public class VehicleRepository implements IVehicleRepository {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void addVehicle(Vehicle vehicle) {
+        vehicles.add(vehicle);
+        save();
+    }
+
+    @Override
+    public void removeVehicle(int id) {
+for (Vehicle vehicle : vehicles) {
+            if (vehicle.id == id) {
+                vehicles.remove(vehicle);
+                break;
+            }
+        }
+        save();
     }
 }

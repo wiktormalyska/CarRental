@@ -1,13 +1,13 @@
 package org.example;
 
 public abstract class Vehicle{
-    String type;
-    String brand;
-    String model;
-    int year;
-    double price;
-    boolean isRented;
-    int id;
+    public String type;
+    public String brand;
+    public String model;
+    public int year;
+    public double price;
+    public boolean isRented;
+    public int id;
     public Vehicle(String type, String brand, String model, int year, double price, boolean isRented, int id) {
         this.brand = brand;
         this.model = model;
