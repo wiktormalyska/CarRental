@@ -52,7 +52,7 @@ public class UserRepository implements IUserRepository {
         try {
             FileWriter fileWriter = new FileWriter(db);
             for (User user : users) {
-                user.toCSV();
+                fileWriter.append(user.toCSV());
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
