@@ -31,7 +31,13 @@ public abstract class User {
         this.password = password;
         this.userType = "null";
     }
-
+    @Override
+    public String toString(){
+        return "Username: " + username + ", Password: " + password + ", User Type: " + userType;
+    }
+    public String toCSV(){
+        return userType + "," + username + "," + password;
+    }
 
 
 }

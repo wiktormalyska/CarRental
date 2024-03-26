@@ -1,17 +1,15 @@
 package org.example;
 
-import org.example.users.Admin;
-import org.example.users.Client;
-import org.example.users.User;
-import org.example.users.UserRepository;
+import org.example.users.*;
 
 import java.io.FileNotFoundException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
 public class RepositoryManager {
-    VehicleRepository vehicleRepository;
-    UserRepository userRepository;
+    public VehicleRepository vehicleRepository;
+    public UserRepository userRepository;
     public RepositoryManager() throws FileNotFoundException {
         vehicleRepository = new VehicleRepository();
         userRepository = new UserRepository();
@@ -30,6 +28,11 @@ public class RepositoryManager {
         Client client = (Client) user;
         client.returnVehicle();
         vehicleRepository.save();
+    }
+    public void createUser(String username, String password) throws FileNotFoundException {
+        String hashedPassword = Arrays.toString(Authentication.hashPassword(password));
+        User user = new Client(username, hashedPassword);
+        userRepository.addUser(user);
     }
 
 }
