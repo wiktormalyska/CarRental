@@ -8,7 +8,7 @@ public class Client extends User{
     public String getUserType() {
         return "client";
     }
-    public Client(String username, String password) {
+    public Client(String username, byte[] password) {
         super(username, password);
     }
     public void rentVehicle(Vehicle vehicle){

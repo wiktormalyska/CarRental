@@ -14,25 +14,43 @@ public class RepositoryManager {
         vehicleRepository = new VehicleRepository();
         userRepository = new UserRepository();
     }
-    public void rentCar(int id, User user) throws FileNotFoundException {
+    public void rentCar(int id, User user){
         if (user instanceof Admin) return;
         vehicleRepository.rentVehicle(id);
         Client client = (Client) user;
-        Vehicle vehicle = vehicleRepository.getVehicles().get(id);
+        Vehicle vehicle = null;
+        try {
+            vehicle = vehicleRepository.getVehicles().get(id);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
         client.rentVehicle(vehicle);
         vehicleRepository.save();
     }
-    public void returnCar(int id, User user) throws FileNotFoundException {
+    public void returnCar(int id, User user) {
         if (user instanceof Admin) return;
         vehicleRepository.returnVehicle(id);
         Client client = (Client) user;
         client.returnVehicle();
         vehicleRepository.save();
     }
-    public void createUser(String username, String password) throws FileNotFoundException {
-        String hashedPassword = Arrays.toString(Authentication.hashPassword(password));
-        User user = new Client(username, hashedPassword);
+    public User createUser(String username, String password) {
+        byte[] hashedPassword = Authentication.hashPassword(password);
+        Client user = new Client(username, hashedPassword);
         userRepository.addUser(user);
+        return user;
+    }
+    public void addVehicle(Vehicle vehicle) {
+        vehicleRepository.addVehicle(vehicle);
+    }
+    public void removeVehicle(int id) {
+        vehicleRepository.removeVehicle(id);
+    }
+    public void printVehicles(){
+        vehicleRepository.printVehicles();
+    }
+    public void printUsers(){
+        userRepository.printUsers();
     }
 
 }

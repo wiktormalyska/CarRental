@@ -1,9 +1,6 @@
 package org.example;
 
-import org.example.users.Client;
-
 import java.io.*;
-import java.nio.Buffer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -18,7 +15,7 @@ public class VehicleRepository implements IVehicleRepository {
 
     public List<Vehicle> getVehicles() throws FileNotFoundException {
         vehicles = new ArrayList<>();
-        File file = new File(Main.class.getClassLoader().getResource("vehicles.csv").getFile());
+        File file = new File(getClass().getClassLoader().getResource("vehicles.csv").getFile());
         Scanner scanner = new Scanner(file);
         while (scanner.hasNextLine()) {
             String[] line = scanner.nextLine().split(",");
@@ -33,8 +30,12 @@ public class VehicleRepository implements IVehicleRepository {
         return vehicles;
     }
 
-    public void printVehicles() throws FileNotFoundException {
-        vehicles = getVehicles();
+    public void printVehicles() {
+        try {
+            vehicles = getVehicles();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
         for (Vehicle vehicle : vehicles) {
             System.out.println(vehicle.toCSV());
         }

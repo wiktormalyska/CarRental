@@ -1,7 +1,6 @@
 package org.example;
 
-import org.example.users.Authentication;
-import org.example.users.User;
+import org.example.users.*;
 
 import java.io.FileNotFoundException;
 import java.util.List;
@@ -35,6 +34,11 @@ public class Main {
 //            e.printStackTrace();
 //        }
         RepositoryManager repositoryManager = new RepositoryManager();
-        User user = Authentication.login(repositoryManager);
+        while (true){
+            User user = Authentication.login(repositoryManager);
+            Menu menu = new Menu(repositoryManager);
+            menu.showMenu(user);
+        }
+
     }
 }

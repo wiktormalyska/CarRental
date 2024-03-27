@@ -12,7 +12,6 @@ import java.util.Scanner;
 public abstract class User {
     private final String username;
     private final byte[] password;
-    private final String userType;
 
     public String getUsername() {
         return username;
@@ -23,20 +22,19 @@ public abstract class User {
     }
 
     public String getUserType() {
-        return userType;
+        return "null";
     }
 
     public User(String username, byte[] password){
         this.username = username;
         this.password = password;
-        this.userType = "null";
     }
     @Override
     public String toString(){
-        return "Username: " + username + ", Password: " + password + ", User Type: " + userType;
+        return "Username: " + username + ", Password: " + password + ", User Type: " + getUserType();
     }
     public String toCSV(){
-        return userType + "," + username + "," + password;
+        return getUserType() + "," + username + "," + password;
     }
 
 

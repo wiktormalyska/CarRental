@@ -25,11 +25,10 @@ public class Authentication {
                     }
                 }
             }
-
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        return null;
+        return repositoryManager.createUser(readUsername, readPassword);
     }
 
     public static byte[] hashPassword(String password) {
