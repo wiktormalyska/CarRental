@@ -11,13 +11,13 @@ import java.util.Scanner;
 
 public abstract class User {
     private final String username;
-    private final byte[] password;
+    private final String password;
 
     public String getUsername() {
         return username;
     }
 
-    public byte[] getPassword() {
+    public String getPassword() {
         return password;
     }
 
@@ -25,7 +25,7 @@ public abstract class User {
         return "null";
     }
 
-    public User(String username, byte[] password){
+    public User(String username, String password){
         this.username = username;
         this.password = password;
     }

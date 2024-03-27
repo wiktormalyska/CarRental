@@ -35,7 +35,7 @@ public class RepositoryManager {
         vehicleRepository.save();
     }
     public User createUser(String username, String password) {
-        byte[] hashedPassword = Authentication.hashPassword(password);
+        String hashedPassword = Authentication.hashPassword(password);
         Client user = new Client(username, hashedPassword);
         userRepository.addUser(user);
         return user;

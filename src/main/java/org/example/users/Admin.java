@@ -8,7 +8,7 @@ import java.io.FileNotFoundException;
 import java.util.List;
 
 public class Admin extends User{
-    public Admin(String username, byte[] password) {
+    public Admin(String username, String password) {
         super(username, password);
     }
     private List<User> getUsers(UserRepository repository) throws FileNotFoundException {

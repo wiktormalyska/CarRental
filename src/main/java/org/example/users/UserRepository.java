@@ -21,9 +21,9 @@ public class UserRepository implements IUserRepository {
             String readLine = scanner.nextLine();
             String[] split = readLine.split(",");
             if (split[0].equals("admin")) {
-                users.add(new Admin(split[1], split[2].getBytes()));
+                users.add(new Admin(split[1], split[2]));
             } else {
-                users.add(new Client(split[1], split[2].getBytes()));
+                users.add(new Client(split[1], split[2]));
             }
         }
         return users;

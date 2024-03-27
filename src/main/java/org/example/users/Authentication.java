@@ -1,10 +1,9 @@
 package org.example.users;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.example.RepositoryManager;
 
 import java.io.FileNotFoundException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -18,9 +17,9 @@ public class Authentication {
         try {
             List<User> users = repositoryManager.userRepository.getUsers();
             for (User user : users) {
-                byte[] hashedPassword = hashPassword(readPassword);
+                String hashedPassword = hashPassword(readPassword);
                 if (user.getUsername().equals(readUsername)) {
-                    if (MessageDigest.isEqual(hashedPassword, user.getPassword())) {
+                    if (user.getPassword().equals(hashedPassword)) {
                         return user;
                     }
                 }
@@ -31,13 +30,8 @@ public class Authentication {
         return repositoryManager.createUser(readUsername, readPassword);
     }
 
-    public static byte[] hashPassword(String password) {
-        try {
-            MessageDigest md = MessageDigest.getInstance("SHA-256");
-            return md.digest(password.getBytes());
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
-        }
+    public static String hashPassword(String password) {
+        return DigestUtils.sha256Hex(password);
     }
 
 }
