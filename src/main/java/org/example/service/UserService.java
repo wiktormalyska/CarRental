@@ -40,7 +40,8 @@ public class UserService {
         newUser.setPassword(Authenticator.hashPassword(createUserDto.getPassword()));
         newUser.setRole(User.Role.USER);
         userRepository.addUser(newUser);
-        //todo: logika gdy nie uda się dodać usera
+        //todo: logika gdy nie uda się dodać usera podobnie jak w deleteUser - zmiana void na typ String
+        // albo boolean.
     }
     public String deleteUser(String login) {
         User user = userRepository.getUser(login);
