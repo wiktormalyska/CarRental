@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
 
-//todo: dodać odpowiednią adnotację
+@Repository
 public class VehicleDAO implements IVehicleRepository {
 
     SessionFactory sessionFactory;

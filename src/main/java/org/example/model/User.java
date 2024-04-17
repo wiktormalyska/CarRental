@@ -1,5 +1,6 @@
 package org.example.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -14,6 +15,7 @@ public class User {
     //private String rentedPlate;
     @OneToOne(fetch = FetchType.EAGER) //default
     @JoinColumn(name = "rentedPlate", referencedColumnName = "plate")
+    @JsonIgnore
     private Vehicle vehicle;
 
 

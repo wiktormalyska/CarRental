@@ -36,9 +36,15 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<String> createUser(@RequestBody CreateUserDto createUserDto) {
-        //todo: logika gdy nie uda sie dodac usera
-        userService.createUser(createUserDto);
-        return ResponseEntity.ok(("User created successfully"));
+        switch (userService.createUser(createUserDto)){
+            case "user already exists"-> {
+                return ResponseEntity.badRequest().body("User already exists");
+            }
+            case "user created successfully"-> {
+                return ResponseEntity.ok("User created successfully");
+            }
+        }
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An unexpected error occurred");
     }
 
     @DeleteMapping("{login}")

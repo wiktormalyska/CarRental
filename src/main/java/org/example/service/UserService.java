@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 @Service
 public class UserService {
-    //todo: Dodac wstrzykwianie autowired przez konstruktor.
+    @Autowired
     private IUserRepository userRepository;
 
     public Collection<UserDto> getUsers() {
@@ -34,14 +34,15 @@ public class UserService {
             return null;
     }
 
-    public void createUser(CreateUserDto createUserDto) {
+    public String createUser(CreateUserDto createUserDto) {
         User newUser = new User();
         newUser.setLogin(createUserDto.getLogin());
         newUser.setPassword(Authenticator.hashPassword(createUserDto.getPassword()));
         newUser.setRole(User.Role.USER);
+        if(getUser(newUser.getLogin())!=null)
+            return "user already exists";
         userRepository.addUser(newUser);
-        //todo: logika gdy nie uda się dodać usera podobnie jak w deleteUser - zmiana void na typ String
-        // albo boolean.
+        return "user created successfully";
     }
     public String deleteUser(String login) {
         User user = userRepository.getUser(login);
